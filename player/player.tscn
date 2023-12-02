@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmpx14vubrav6"]
+
+[ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="1_1s45q"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_2y84b"]
+[ext_resource type="PackedScene" uid="uid://n3hnjyyu4hbx" path="res://systems/xp/level_up.tscn" id="3_beelo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnhnj"]
+atlas = ExtResource("1_1s45q")
+region = Rect2(427, 1, 12, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8foj2"]
+size = Vector2(12, 14)
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_2y84b")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_vnhnj")
+
+[node name="collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8foj2")
+
+[node name="camera" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="level_up" parent="." instance=ExtResource("3_beelo")]
+
+[node name="Label" type="Label" parent="level_up"]
+visible = false
+offset_left = -34.0
+offset_top = -34.0
+offset_right = 35.0
+offset_bottom = -11.0
+text = "Level up!"
+
+[node name="level_up_timer" type="Timer" parent="level_up/Label"]
+wait_time = 2.0
+one_shot = true
+
+[node name="hp" type="Label" parent="."]
+offset_left = -187.0
+offset_top = 81.0
+offset_right = -147.0
+offset_bottom = 104.0
+
+[node name="xp" type="Label" parent="."]
+offset_left = -187.0
+offset_top = 54.0
+offset_right = -147.0
+offset_bottom = 77.0
+
+[connection signal="timeout" from="level_up/Label/level_up_timer" to="." method="_on_level_up_timer_timeout"]

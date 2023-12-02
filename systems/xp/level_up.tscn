@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://n3hnjyyu4hbx"]
+
+[ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="1_dsftr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqjuy"]
+atlas = ExtResource("1_dsftr")
+region = Rect2(749, 34, 14, 16)
+
+[node name="level_up" type="CPUParticles2D"]
+emitting = false
+amount = 1
+one_shot = true
+texture = SubResource("AtlasTexture_tqjuy")
+gravity = Vector2(0, -290)
+scale_amount_min = 2.0
+scale_amount_max = 2.0

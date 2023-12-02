@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkpl37p2vrtxt"]
+
+[ext_resource type="PackedScene" uid="uid://c8shpvmhi1gw2" path="res://assets/tile_map.tscn" id="1_mw5bu"]
+[ext_resource type="Script" path="res://UI/menu.gd" id="1_vfcxe"]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_vfcxe")
+
+[node name="play" type="Button" parent="."]
+offset_left = 499.0
+offset_top = 385.0
+offset_right = 557.0
+offset_bottom = 399.0
+
+[node name="quit" type="Button" parent="."]
+offset_left = 498.0
+offset_top = 416.0
+offset_right = 558.0
+offset_bottom = 432.0
+
+[node name="TileMap" parent="." instance=ExtResource("1_mw5bu")]
+layer_0/tile_data = PackedInt32Array(1441823, 2293760, 18, 1441825, 2293760, 18, 1441824, 2686976, 18, 1441826, 2293760, 19, 1441827, 2555904, 18, 1441822, 2228224, 12, 1703971, 2686976, 14, 1572894, 2818048, 16, 1572895, 2424832, 19, 1572896, 3014656, 18, 1572897, 2293760, 18, 1572898, 3014656, 19, 1703967, 2490368, 19, 1703968, 2752512, 19, 1703969, 2818048, 18, 1703970, 2686976, 19)
