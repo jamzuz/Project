@@ -3477,6 +3477,7 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "castle"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_2r74r")
 
 [node name="TileMap" type="TileMap"]
@@ -3484,4 +3485,5 @@ tile_set = SubResource("TileSet_0ptxr")
 format = 2
 layer_0/name = "objects"
 layer_1/name = "decorations"
+layer_1/navigation_enabled = false
 layer_1/tile_data = PackedInt32Array()

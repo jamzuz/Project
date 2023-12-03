@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgrhrds5mkvyk"]
+
+[ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="1_2l6y3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whlej"]
+atlas = ExtResource("1_2l6y3")
+region = Rect2(309, 310, 4, 4)
+
+[node name="blood" type="CPUParticles2D"]
+modulate = Color(1, 0, 0, 1)
+emitting = false
+amount = 6
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+randomness = 0.3
+texture = SubResource("AtlasTexture_whlej")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 70.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+scale_amount_min = 0.8

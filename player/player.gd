@@ -7,10 +7,10 @@ var speed = 100
 
 enum player_state {IDLE, RUN, HURT, ATTACK}
 var current_state : player_state = player_state.IDLE
-
+@onready var sprite = $sprite
 @onready var anim_tree : AnimationTree = $AnimationTree
 func handle_player_state(new_state : player_state):
-	if new_state != current_state:
+	#if new_state != current_state:
 		if new_state == player_state.IDLE:
 			current_state = player_state.IDLE
 			anim_tree["parameters/conditions/idle"] = true
@@ -18,22 +18,26 @@ func handle_player_state(new_state : player_state):
 			anim_tree["parameters/conditions/attacking"] = false
 		if new_state == player_state.RUN:
 			current_state = player_state.RUN
-			anim_tree["parameters/conditions/is_moving"] = true
 			anim_tree["parameters/conditions/idle"] = false
+			anim_tree["parameters/conditions/is_moving"] = true
 			anim_tree["parameters/conditions/attacking"] = false
 		if new_state == player_state.ATTACK:
 			current_state = player_state.ATTACK
-			anim_tree["parameters/conditions/is_moving"] = false
 			anim_tree["parameters/conditions/idle"] = false
+			anim_tree["parameters/conditions/is_moving"] = false
 			anim_tree["parameters/conditions/attacking"] = true
 #endregion
+
+func _ready():
+	if PlayerData.level < 7:
+		sprite.frame = PlayerData.level -1
+	handle_player_state(player_state.IDLE)
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
 	if velocity.length():
 		handle_player_state(player_state.RUN)
-		$dust.emitting = true
 	else:
 		handle_player_state(player_state.IDLE)
 	
@@ -50,6 +54,7 @@ func level_up():
 	$level_up/Label.visible = true
 	$level_up.emitting = true
 	$level_up/Label/level_up_timer.start()
+	sprite.frame = PlayerData.level
 
 func _on_level_up_timer_timeout():
 	$level_up/Label.visible = false

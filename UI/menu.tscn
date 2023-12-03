@@ -24,3 +24,6 @@ layer_0/tile_data = PackedInt32Array(1703972, 2490368, 19, 1703973, 2752512, 19,
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(528, 368)
 zoom = Vector2(4, 4)
+
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

@@ -10,31 +10,35 @@ bg_color = Color(0.368627, 0.698039, 0.145098, 1)
 
 [node name="UI" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-offset_right = -1152.0
-offset_bottom = -648.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_top = -84.0
+offset_bottom = -84.0
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_devxj")
 metadata/_edit_use_anchors_ = true
 
+[node name="dark" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 299.0
+offset_bottom = 85.0
+
 [node name="hp" type="Label" parent="."]
 layout_mode = 0
-offset_left = 9.0
-offset_top = 576.0
-offset_right = 51.0
-offset_bottom = 599.0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 54.0
+offset_bottom = 28.0
 text = "HP:"
 
 [node name="hpbar" type="ProgressBar" parent="hp"]
 layout_mode = 0
 offset_left = 44.0
 offset_top = -1.0
-offset_right = 282.0
+offset_right = 289.0
 offset_bottom = 18.0
 theme_override_styles/background = SubResource("StyleBoxFlat_ktas3")
 theme_override_styles/fill = SubResource("StyleBoxFlat_qomja")
@@ -52,10 +56,10 @@ text = "100"
 
 [node name="xp" type="Label" parent="."]
 layout_mode = 0
-offset_left = 10.0
-offset_top = 599.0
-offset_right = 58.0
-offset_bottom = 622.0
+offset_left = 6.0
+offset_top = 31.0
+offset_right = 54.0
+offset_bottom = 54.0
 text = "XP:"
 
 [node name="xp_amount" type="Label" parent="xp"]
@@ -76,8 +80,8 @@ text = "level:1"
 
 [node name="gold" type="Label" parent="."]
 layout_mode = 0
-offset_left = 159.0
-offset_top = 630.0
-offset_right = 271.0
-offset_bottom = 653.0
+offset_left = 137.0
+offset_top = 62.0
+offset_right = 249.0
+offset_bottom = 85.0
 text = "Gold:0"

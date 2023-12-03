@@ -29,7 +29,7 @@ func _ready():
 func _on_say_area_body_entered(body):
 	if body is player_controller and can_trigger:
 		can_trigger = false
-		$Label.text = lines.pick_random()
+		$text_box.text = lines.pick_random()
 		
 func _on_say_area_body_exited(body):
 	if body is player_controller:
@@ -37,4 +37,4 @@ func _on_say_area_body_exited(body):
 		
 func _on_timer_timeout():
 	can_trigger = true
-	$Label.text = ""
+	$text_box.text = ""

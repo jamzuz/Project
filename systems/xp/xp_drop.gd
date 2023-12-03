@@ -1,5 +1,5 @@
 extends Area2D
-
+class_name  xp_drop
 @export var xp_amount : int
 
 func _on_body_entered(body):

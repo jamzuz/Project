@@ -49,9 +49,9 @@ z_index = 99
 position = Vector2(0, -45)
 texture = SubResource("AtlasTexture_gp0xu")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="collider" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="collision_shape" type="CollisionShape2D" parent="collider"]
 position = Vector2(-1, -4)
 shape = SubResource("RectangleShape2D_hek72")
 
