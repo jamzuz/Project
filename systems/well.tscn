@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://dqhuw2fdc84of"]
+
+[ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="1_glh7w"]
+[ext_resource type="Script" path="res://systems/well.gd" id="1_k4jf2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2efvf"]
+atlas = ExtResource("1_glh7w")
+region = Rect2(103, 103, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa8jb"]
+atlas = ExtResource("1_glh7w")
+region = Rect2(70, 240, 12, 14)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_owudr"]
+radius = 31.4327
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gp0xu"]
+atlas = ExtResource("1_glh7w")
+region = Rect2(665, 307, 12, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hek72"]
+size = Vector2(24, 20)
+
+[node name="well" type="Node2D"]
+script = ExtResource("1_k4jf2")
+
+[node name="well_beam" type="Sprite2D" parent="."]
+z_index = 99
+position = Vector2(5.96046e-08, -17)
+scale = Vector2(1.75, 1.96429)
+texture = SubResource("AtlasTexture_2efvf")
+
+[node name="well_sprite" type="Sprite2D" parent="."]
+modulate = Color(0.388235, 0.388235, 0.388235, 1)
+position = Vector2(4.76837e-07, -3)
+scale = Vector2(1.75, 1.35714)
+texture = SubResource("AtlasTexture_qa8jb")
+
+[node name="press_e" type="Area2D" parent="."]
+position = Vector2(5.96046e-08, -17)
+scale = Vector2(1.75, 1.96429)
+
+[node name="player_close" type="CollisionShape2D" parent="press_e"]
+position = Vector2(-3.40598e-08, 8.65455)
+shape = SubResource("CircleShape2D_owudr")
+
+[node name="E" type="Sprite2D" parent="."]
+z_index = 99
+position = Vector2(0, -45)
+texture = SubResource("AtlasTexture_gp0xu")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -4)
+shape = SubResource("RectangleShape2D_hek72")
+
+[connection signal="body_entered" from="press_e" to="." method="_on_press_e_body_entered"]
+[connection signal="body_exited" from="press_e" to="." method="_on_press_e_body_exited"]

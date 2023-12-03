@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=3 uid="uid://cy6j86n6es27h"]
+
+[ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="1_5p73d"]
+[ext_resource type="Script" path="res://systems/npc.gd" id="1_cbgqi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_822l8"]
+radius = 24.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3vtm"]
+atlas = ExtResource("1_5p73d")
+region = Rect2(410, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lt58"]
+atlas = ExtResource("1_5p73d")
+region = Rect2(410, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eghcv"]
+atlas = ExtResource("1_5p73d")
+region = Rect2(410, 34, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jca0"]
+atlas = ExtResource("1_5p73d")
+region = Rect2(427, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqved"]
+atlas = ExtResource("1_5p73d")
+region = Rect2(529, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b74ov"]
+atlas = ExtResource("1_5p73d")
+region = Rect2(512, 17, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vumya"]
+atlas = ExtResource("1_5p73d")
+region = Rect2(495, 17, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7wtv1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3vtm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lt58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eghcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jca0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqved")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b74ov")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vumya")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5h7o"]
+radius = 7.0
+height = 18.0
+
+[node name="npc" type="CharacterBody2D"]
+script = ExtResource("1_cbgqi")
+
+[node name="say_area" type="Area2D" parent="."]
+
+[node name="say_radius" type="CollisionShape2D" parent="say_area"]
+shape = SubResource("CircleShape2D_822l8")
+
+[node name="npc_sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(2, -2)
+sprite_frames = SubResource("SpriteFrames_7wtv1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_t5h7o")
+
+[node name="Label" type="Label" parent="."]
+z_index = 10
+offset_left = -47.0
+offset_top = -88.0
+offset_right = 48.0
+offset_bottom = -14.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+clip_text = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="body_entered" from="say_area" to="." method="_on_say_area_body_entered"]
+[connection signal="body_exited" from="say_area" to="." method="_on_say_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
