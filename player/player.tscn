@@ -253,7 +253,7 @@ parameters/conditions/is_moving = false
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(1, -1)
 texture = SubResource("AtlasTexture_vnhnj")
-offset = Vector2(0, 0.315513)
+offset = Vector2(0, 0.073261)
 hframes = 7
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -261,7 +261,7 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_8foj2")
 
 [node name="camera" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(0.5, 0.5)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
