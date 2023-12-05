@@ -24,5 +24,8 @@ func set_xp(xp_amount = xp,xp_to_level_amount = xp_to_level):
 	xp_to_level = xp_to_level_amount
 	$xp/xp_amount.text = str(xp) +"/"+ str(xp_to_level)
 	
+func set_gold():
+	$gold.text = "gold:"+ str(PlayerData.gold)
+	
 func set_level():
 	$xp/level.text = "level:" + str(PlayerData.level)

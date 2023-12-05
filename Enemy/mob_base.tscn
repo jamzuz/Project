@@ -1,8 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://cv2awnahxd5oj"]
+[gd_scene load_steps=32 format=3 uid="uid://cv2awnahxd5oj"]
 
 [ext_resource type="Script" path="res://mob_base.gd" id="1_levnj"]
 [ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="2_y7spp"]
-[ext_resource type="PackedScene" uid="uid://drpj3c5u45b05" path="res://systems/hitbox.tscn" id="3_bvere"]
+[ext_resource type="PackedScene" uid="uid://drpj3c5u45b05" path="res://systems/world/hitbox.tscn" id="3_bvere"]
 [ext_resource type="PackedScene" uid="uid://bdyipn10auw15" path="res://particles/dust.tscn" id="4_xhm0o"]
 [ext_resource type="PackedScene" uid="uid://dgrhrds5mkvyk" path="res://particles/blood.tscn" id="5_53aes"]
 
@@ -62,6 +62,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("model_sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_xr7md"]
 resource_name = "idle"
@@ -90,6 +102,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("model_sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mob_anims/AnimationTree:parameters/conditions/idle")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_hjyji"]
@@ -156,12 +192,138 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("model_sprite:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("mob_anims/AnimationTree:parameters/conditions/idle")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_m5suj"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model_sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("model_sprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("model_sprite:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0.658687)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("model_sprite:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("mob_anims/AnimationTree:parameters/conditions/shoot")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("mob_anims/AnimationTree:parameters/conditions/idle")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("mob_anims/AnimationTree:parameters/conditions/is_moving")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fpd6s"]
 _data = {
 "hit": SubResource("Animation_14rvc"),
 "idle": SubResource("Animation_xr7md"),
-"run": SubResource("Animation_hjyji")
+"run": SubResource("Animation_hjyji"),
+"shoot": SubResource("Animation_m5suj")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v84g7"]
@@ -172,6 +334,9 @@ animation = &"idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3irdx"]
 animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fbvcs"]
+animation = &"shoot"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tyfkd"]
 advance_mode = 2
@@ -203,26 +368,57 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ax0tq"]
+advance_mode = 2
+advance_condition = &"shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_timdl"]
+advance_mode = 2
+advance_condition = &"shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6kxrt"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4t8tn"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o0tpy"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a5ft5"]
+advance_mode = 2
+advance_condition = &"hit"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hqa37"]
-states/End/position = Vector2(617, 87)
+states/End/position = Vector2(609, 359)
+states/Start/position = Vector2(-103, 344)
 states/hit/node = SubResource("AnimationNodeAnimation_v84g7")
-states/hit/position = Vector2(400, 194)
+states/hit/position = Vector2(265, 557)
 states/idle/node = SubResource("AnimationNodeAnimation_2ymql")
-states/idle/position = Vector2(310, 100)
+states/idle/position = Vector2(29, 344)
 states/run/node = SubResource("AnimationNodeAnimation_3irdx")
-states/run/position = Vector2(458, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_tyfkd"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_f0bwy"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_k48as"), "run", "hit", SubResource("AnimationNodeStateMachineTransition_vdc6p"), "idle", "hit", SubResource("AnimationNodeStateMachineTransition_xx2lv"), "hit", "run", SubResource("AnimationNodeStateMachineTransition_4l4nr"), "hit", "idle", SubResource("AnimationNodeStateMachineTransition_weo28")]
-graph_offset = Vector2(-131.702, 0)
+states/run/position = Vector2(484, 359)
+states/shoot/node = SubResource("AnimationNodeAnimation_fbvcs")
+states/shoot/position = Vector2(246, 208)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_tyfkd"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_f0bwy"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_k48as"), "run", "hit", SubResource("AnimationNodeStateMachineTransition_vdc6p"), "idle", "hit", SubResource("AnimationNodeStateMachineTransition_xx2lv"), "hit", "run", SubResource("AnimationNodeStateMachineTransition_4l4nr"), "hit", "idle", SubResource("AnimationNodeStateMachineTransition_weo28"), "run", "shoot", SubResource("AnimationNodeStateMachineTransition_ax0tq"), "idle", "shoot", SubResource("AnimationNodeStateMachineTransition_timdl"), "hit", "shoot", SubResource("AnimationNodeStateMachineTransition_6kxrt"), "shoot", "idle", SubResource("AnimationNodeStateMachineTransition_4t8tn"), "shoot", "run", SubResource("AnimationNodeStateMachineTransition_o0tpy"), "shoot", "hit", SubResource("AnimationNodeStateMachineTransition_a5ft5")]
+graph_offset = Vector2(-239.702, 358)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pujg6"]
 atlas = ExtResource("2_y7spp")
 region = Rect2(408, 84, 136, 35)
 
-[node name="mob_base" type="CharacterBody2D"]
+[node name="mob_base" type="CharacterBody2D" groups=["mob"]]
 z_index = 1
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_levnj")
+detection_radius = 200.0
 speed = 80
 
 [node name="collider" type="CollisionShape2D" parent="."]
@@ -235,8 +431,6 @@ shape = SubResource("RectangleShape2D_mt8ef")
 shape = SubResource("CircleShape2D_2wc8l")
 
 [node name="hitbox" parent="." instance=ExtResource("3_bvere")]
-
-[node name="weapon_pivot" type="Node2D" parent="."]
 
 [node name="nav_agent" type="NavigationAgent2D" parent="."]
 target_desired_distance = 30.0
@@ -258,13 +452,15 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_hqa37")
 anim_player = NodePath("..")
 parameters/conditions/hit = false
-parameters/conditions/idle = true
+parameters/conditions/idle = false
 parameters/conditions/is_moving = false
+parameters/conditions/shoot = false
 
 [node name="model_sprite" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
 z_index = 1
+scale = Vector2(1e-05, 1e-05)
 texture = SubResource("AtlasTexture_pujg6")
-offset = Vector2(0, 0.677737)
 hframes = 8
 vframes = 2
 
@@ -272,7 +468,12 @@ vframes = 2
 
 [node name="blood" parent="." instance=ExtResource("5_53aes")]
 
+[node name="attack_cd" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
 [connection signal="got_hit" from="hitbox" to="." method="_on_hitbox_got_hit"]
 [connection signal="timeout" from="nav_agent/nav_timer" to="." method="_on_nav_timer_timeout"]
+[connection signal="timeout" from="attack_cd" to="." method="_on_attack_cd_timeout"]

@@ -7,4 +7,4 @@ func _ready():
 
 func  _input(event):
 	if event.is_action_pressed("attack"):
-		$sword_anims.play("attack")
+		$sword_anims.play("attack_2")

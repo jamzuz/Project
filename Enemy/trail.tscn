@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dejqs8fnxxqqj"]
+
+[ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="1_epbt8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38gom"]
+atlas = ExtResource("1_epbt8")
+region = Rect2(282, 293, 7, 7)
+
+[sub_resource type="Gradient" id="Gradient_bbhy6"]
+
+[sub_resource type="Gradient" id="Gradient_8x7hu"]
+offsets = PackedFloat32Array(0, 0.299435, 0.99435, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.408212, 0.408212, 0.408212, 1, 0.429379, 0.429379, 0.429379, 1, 1, 1, 1, 1)
+
+[node name="trail" type="CPUParticles2D"]
+modulate = Color(0.364706, 1, 0.337255, 1)
+randomness = 0.5
+texture = SubResource("AtlasTexture_38gom")
+direction = Vector2(-1, 0)
+gravity = Vector2(0, 0)
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+scale_amount_min = 0.4
+scale_amount_max = 0.8
+color = Color(0.00784314, 1, 0, 1)
+color_ramp = SubResource("Gradient_bbhy6")
+color_initial_ramp = SubResource("Gradient_8x7hu")

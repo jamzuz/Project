@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://bb6atys34gsfo"]
+
+[ext_resource type="Script" path="res://systems/gold/gold_pickup.gd" id="1_b3wyl"]
+[ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="1_m2olo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f64u1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sq268"]
+atlas = ExtResource("1_m2olo")
+region = Rect2(698, 52, 14, 14)
+
+[sub_resource type="Animation" id="Animation_p0ram"]
+resource_name = "default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(2, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:skew")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.56905, 1.56905]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fyr4b"]
+_data = {
+"default": SubResource("Animation_p0ram")
+}
+
+[node name="gold_pickup" type="Area2D"]
+script = ExtResource("1_b3wyl")
+gold_amount = null
+
+[node name="pickup_radius" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_f64u1")
+
+[node name="gold_sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+rotation = 1.5708
+scale = Vector2(0.6, 0.6)
+skew = 1.15546
+texture = SubResource("AtlasTexture_sq268")
+offset = Vector2(0.52719, 0)
+
+[node name="anims" type="AnimationPlayer" parent="gold_sprite"]
+libraries = {
+"": SubResource("AnimationLibrary_fyr4b")
+}
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

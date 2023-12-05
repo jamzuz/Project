@@ -71,6 +71,7 @@ animations = [{
 }]
 
 [node name="xp_drop" type="Area2D"]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_u2l04")
 
 [node name="pickup_area" type="CollisionShape2D" parent="."]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3jncdd6ns64s"]
+
+[ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="1_konyx"]
+[ext_resource type="Script" path="res://debug/tile.gd" id="1_na212"]
+[ext_resource type="PackedScene" uid="uid://drpj3c5u45b05" path="res://systems/world/hitbox.tscn" id="2_iijm8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87ll5"]
+atlas = ExtResource("1_konyx")
+region = Rect2(0, 221, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dn0bh"]
+size = Vector2(16, 16)
+
+[node name="tile" type="StaticBody2D"]
+script = ExtResource("1_na212")
+
+[node name="tiles" type="Sprite2D" parent="."]
+modulate = Color(0.345098, 0.345098, 0.345098, 1)
+texture = SubResource("AtlasTexture_87ll5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dn0bh")
+
+[node name="hitbox" parent="." instance=ExtResource("2_iijm8")]
+mob_hp = 5

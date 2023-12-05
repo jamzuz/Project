@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://cy6j86n6es27h"]
 
 [ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="1_5p73d"]
-[ext_resource type="Script" path="res://systems/npc.gd" id="1_cbgqi"]
+[ext_resource type="Script" path="res://systems/world/npc.gd" id="1_cbgqi"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_822l8"]
 radius = 24.0
@@ -88,10 +88,11 @@ shape = SubResource("CapsuleShape2D_t5h7o")
 
 [node name="text_box" type="Label" parent="."]
 z_index = 10
-offset_left = -68.0
-offset_top = -71.0
-offset_right = 69.0
-offset_bottom = -7.0
+offset_left = -55.0
+offset_top = -66.0
+offset_right = 82.0
+offset_bottom = -2.0
+scale = Vector2(0.8, 0.8)
 theme = SubResource("Theme_t1hx4")
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 horizontal_alignment = 1
@@ -99,10 +100,13 @@ vertical_alignment = 2
 autowrap_mode = 3
 clip_text = true
 
-[node name="Timer" type="Timer" parent="."]
+[node name="dialogue_cd" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
+[node name="char_cd" type="Timer" parent="."]
+wait_time = 0.05
+
 [connection signal="body_entered" from="say_area" to="." method="_on_say_area_body_entered"]
 [connection signal="body_exited" from="say_area" to="." method="_on_say_area_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="dialogue_cd" to="." method="_on_timer_timeout"]

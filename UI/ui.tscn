@@ -48,9 +48,9 @@ show_percentage = false
 
 [node name="hp_amount" type="Label" parent="hp"]
 layout_mode = 0
-offset_left = 42.0
+offset_left = 47.0
 offset_top = 1.0
-offset_right = 117.0
+offset_right = 122.0
 offset_bottom = 24.0
 text = "100"
 
