@@ -8,9 +8,10 @@ class_name mob
 @export var ranged : bool = false
 @onready var nav : NavigationAgent2D = $nav_agent
 @onready var anim : AnimationTree = $mob_anims/AnimationTree
+var projectile : PackedScene = preload("res://Enemy/enemy_projectile.tscn")
 var xp_dropped : PackedScene = preload("res://systems/xp/xp_drop.tscn")
 var gold_dropped : PackedScene = preload("res://systems/gold/gold_pickup.tscn")
-var projectile : PackedScene = preload("res://Enemy/enemy_projectile.tscn")
+var potion : PackedScene = preload("res://player/potion.tscn")
 var target : player_controller = null
 
 func _physics_process(_delta):
@@ -39,13 +40,12 @@ func _on_detection_body_entered(body):
 	if body is player_controller:
 		target = body
 		$nav_agent/nav_timer.start()
-		
+#figure out what to do with idle
 #func _on_detection_body_exited(body):
 	#if body is player_controller:
 		#target = null
 
 func die():
-	var offset = Vector2(randf_range(-10, 10), randf_range(-10, 10))
 	var xpdrop : xp_drop = xp_dropped.instantiate()
 	get_tree().current_scene.get_parent().add_child(xpdrop)
 	xpdrop.position = position
@@ -55,11 +55,14 @@ func die():
 	if drop_chance < 60:
 		var golddrop : gold_drop = gold_dropped.instantiate()
 		get_tree().current_scene.get_parent().add_child(golddrop)
-		golddrop.position = position+offset
+		golddrop.position = position+Vector2(randf_range(-10, 10), randf_range(-10, 10))
 		golddrop.gold_amount = level + randi_range(1,10)
-	
+	if drop_chance < 20:
+		var potiondrop = potion.instantiate()
+		get_tree().current_scene.get_parent().add_child(potiondrop)
+		potiondrop.position = position+Vector2(randf_range(-10, 10), randf_range(-10, 10))
 	queue_free()
-
+	
 func _on_nav_timer_timeout():
 	if target:
 		nav.target_position = target.position

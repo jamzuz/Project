@@ -13,6 +13,8 @@ var xp_to_level : int = 30
 var level : int = 1
 var level_multiplier : float  = 1.05
 var gold : int = 0
+var potions : int = 0
+var well_location : Vector2 = Vector2(0,0)
 
 func _ready():
 	create_player_instance()
@@ -22,7 +24,7 @@ func restart():
 	max_hp = 100
 	base_hp = 100
 	xp = 0
-	xp_to_level = 30
+	xp_to_level = 50
 	level = 1
 	level_multiplier = 1.05
 	gold = 0
@@ -35,6 +37,7 @@ func create_player_instance():
 	user_interface.set_hp(hp, max_hp)
 	user_interface.set_xp(xp, xp_to_level)
 	user_interface.set_gold()
+	user_interface.set_potions()
 
 func spawn_player(spawn_position : Vector2 = Vector2(430,300)):
 	if !player:
@@ -54,6 +57,11 @@ func gain_xp(amount):
 func gain_gold(amount : int):
 	gold = gold + amount
 	user_interface.set_gold()
+
+func use_gold(amount : int):
+	gold = gold - amount
+	user_interface.set_gold()
+
 
 func level_up():
 	player.level_up()
@@ -82,3 +90,20 @@ func take_damage(amount):
 		get_tree().call_deferred("change_scene_to_file","res://debug/dead.tscn")
 	else:
 		user_interface.set_hp(hp, max_hp)
+
+func heal(amount: int):
+	if hp + amount > max_hp:
+		hp = max_hp
+	else:
+		hp += (amount + hp)
+	user_interface.set_hp(hp, max_hp)
+
+func potion_gained():
+	if potions < 10:
+		potions += 1
+		user_interface.set_potions()
+
+func use_potion():
+	potions -= 1
+	heal(100)
+	user_interface.set_potions()

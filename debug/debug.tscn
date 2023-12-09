@@ -24,4 +24,5 @@ position = Vector2(491, 238)
 model = 1
 
 [node name="npc3" parent="." instance=ExtResource("4_604fu")]
-position = Vector2(471, 326)
+position = Vector2(489, 340)
+potion_vendor = true

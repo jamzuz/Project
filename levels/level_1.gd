@@ -1,4 +1,9 @@
 extends Node2D
-
+@onready var spawns = [
+	$spawn.position,
+	$spawn2.position,
+	$spawn3.position
+]
 func _ready():
-	PlayerData.spawn_player(Vector2(0,0))
+	PlayerData.well_location = $town_portal.position
+	PlayerData.spawn_player(spawns.pick_random())

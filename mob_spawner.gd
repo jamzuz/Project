@@ -6,7 +6,7 @@ var mob_type = preload("res://Enemy/mob_base.tscn")
 
 func _ready():
 	var chance = randi_range(1,100)
-	if chance < 40:
+	if chance < 70:
 		var mob_spawn : mob = mob_type.instantiate()
 		mob_spawn.ranged = true
 		mob_spawn.model = 0
