@@ -13,16 +13,21 @@ config_version=5
 config/name="Project"
 run/main_scene="res://UI/menu.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
+boot_splash/image="res://assets/echoes_from_below.png"
 config/icon="res://assets/sword.png"
 
 [autoload]
 
 Global="*res://global.gd"
 PlayerData="*res://player_data.gd"
+Dialogue="*res://dialogue.gd"
 
 [display]
 
-window/size/mode=2
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=4
+window/size/resizable=false
 mouse_cursor/custom_image="res://assets/sword.png"
 
 [gui]

@@ -64,6 +64,7 @@ func level_up():
 	$level_up/Label.visible = true
 	$level_up.emitting = true
 	$level_up/Label/level_up_timer.start()
+	#Dialogue.add_dialogue("Level up!")
 	if PlayerData.level < 7:
 		sprite.frame = PlayerData.level
 

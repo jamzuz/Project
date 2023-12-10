@@ -37,3 +37,6 @@ func set_level():
 func set_potions():
 	potion_amount = PlayerData.potions
 	$potion/potion_amount.text = str(potion_amount)
+
+func update_dialogue(text_in : String):
+	$chat/chatbox.text = text_in

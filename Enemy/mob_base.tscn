@@ -1,6 +1,6 @@
 [gd_scene load_steps=32 format=3 uid="uid://cv2awnahxd5oj"]
 
-[ext_resource type="Script" path="res://mob_base.gd" id="1_levnj"]
+[ext_resource type="Script" path="res://Enemy/mob_base.gd" id="1_8m5jl"]
 [ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="2_y7spp"]
 [ext_resource type="PackedScene" uid="uid://drpj3c5u45b05" path="res://systems/world/hitbox.tscn" id="3_bvere"]
 [ext_resource type="PackedScene" uid="uid://bdyipn10auw15" path="res://particles/dust.tscn" id="4_xhm0o"]
@@ -417,7 +417,7 @@ region = Rect2(408, 84, 136, 35)
 z_index = 1
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_levnj")
+script = ExtResource("1_8m5jl")
 detection_radius = 200.0
 speed = 80
 
