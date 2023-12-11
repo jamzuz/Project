@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://42s3wmfx7kdk"]
 
-[ext_resource type="Script" path="res://chest.gd" id="1_b64vi"]
+[ext_resource type="Script" path="res://systems/chest.gd" id="1_b64vi"]
 [ext_resource type="PackedScene" uid="uid://c4udffytikdi2" path="res://systems/player/interact.tscn" id="2_vh02o"]
 [ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="3_rsd4t"]
 

@@ -8,7 +8,8 @@ class_name hud
 @onready var level : Label = $player_hud/stats_container/level
 @onready var gold : Label = $player_hud/stats_container/level/gold
 @onready var potion_amount : Label = $player_hud/potion/potion_amount
-# Called when the node enters the scene tree for the first time.
+var dialogue : String = ""
+
 func _ready():
 	set_ui()
 	
@@ -24,6 +25,7 @@ func set_ui():
 	potion_amount.text = str(PlayerData.potions)
 	if PlayerData.potions == 0:
 		$player_hud/potion/potion.frame = 1
+
 func update_hp():
 	hpbar.max_value = PlayerData.max_hp
 	hp_amount.text = str(PlayerData.hp) + "/" + str(PlayerData.max_hp)
@@ -46,3 +48,11 @@ func update_potion():
 		$player_hud/potion/potion.frame = 1
 	else:
 		$player_hud/potion/potion.frame = 0
+
+func reset_dialogue():
+	dialogue = ""
+	$player_hud/chatbox/chattext.text = dialogue
+
+func add_dialogue(text : String):
+	dialogue = dialogue + "\n" + text
+	$player_hud/chatbox/chattext.text = dialogue

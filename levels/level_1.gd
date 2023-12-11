@@ -8,4 +8,4 @@ extends Node2D
 func _ready():
 	PlayerData.well_location = $town_portal.position
 	PlayerData.spawn_player(spawns.pick_random())
-	#Dialogue.add_dialogue("Echo cavern level 1 entered")
+	PlayerData.add_dialogue("Echo cavern level 1 entered")

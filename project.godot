@@ -20,7 +20,6 @@ config/icon="res://assets/sword.png"
 
 Global="*res://global.gd"
 PlayerData="*res://player_data.gd"
-Dialogue="*res://dialogue.gd"
 
 [display]
 

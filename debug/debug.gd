@@ -5,3 +5,4 @@ extends Node2D
 func _ready():
 	PlayerData.well_location = $well.position
 	PlayerData.spawn_player()
+	PlayerData.add_dialogue("Welcome to camp Echo")

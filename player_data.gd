@@ -1,13 +1,13 @@
 extends Node
 
 var player_scene : PackedScene = preload("res://player/player.tscn")
+var ui_scene : PackedScene = preload("res://UI/hud.tscn")
 var player : player_controller = null
-var ui_scene : PackedScene = preload("res://hud.tscn")
 var user_interface : hud = null
 var armor : int = 0
+var base_hp : int = 100
 var hp : int = 100
 var max_hp : int = 100
-var base_hp : int = 100
 var xp : int = 0
 var xp_to_level : int = 30
 var level : int = 1
@@ -15,11 +15,12 @@ var level_multiplier : float  = 1.05
 var gold : int = 0
 var potions : int = 0
 var well_location : Vector2 = Vector2(0,0)
+var dialogue_text : String = ""
 
 func _ready():
 	create_player_instance()
 
-func restart():
+func reset_player_stats():
 	hp = 100
 	max_hp = 100
 	base_hp = 100
@@ -28,6 +29,9 @@ func restart():
 	level = 1
 	level_multiplier = 1.05
 	gold = 0
+
+func restart():
+	reset_player_stats()
 	get_tree().call_deferred("change_scene_to_file","res://debug/debug.tscn")
 
 func create_player_instance():
@@ -43,19 +47,22 @@ func spawn_player(spawn_position : Vector2 = Vector2(430,300)):
 
 func gain_xp(amount):
 	xp += amount
+	user_interface.add_dialogue("gained "+str(amount)+" experience.")
 	if xp >= xp_to_level:
 		level_up()
+		user_interface.add_dialogue("leveled up!")	
 	user_interface.update_xp()
 	user_interface.update_hp()
 
 func gain_gold(amount : int):
 	gold = gold + amount
+	user_interface.add_dialogue("picked up "+str(amount)+" gold.")
 	user_interface.update_gold()
 
 func use_gold(amount : int):
 	gold = gold - amount
+	user_interface.add_dialogue("spent "+str(amount)+" gold.")
 	user_interface.update_gold()
-
 
 func level_up():
 	player.level_up()
@@ -85,7 +92,7 @@ func take_damage(amount):
 		user_interface.update_hp()
 
 func heal(amount: int):
-	if hp + amount > max_hp:
+	if hp + amount >= max_hp:
 		hp = max_hp
 	else:
 		hp += (amount + hp)
@@ -101,3 +108,5 @@ func use_potion():
 	heal(100)
 	user_interface.update_potion()
 
+func add_dialogue(dialogue_to_add : String):
+	user_interface.add_dialogue(dialogue_to_add)

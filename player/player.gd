@@ -30,8 +30,8 @@ func handle_player_state(new_state : player_state):
 #endregion
 
 func _ready():
-	if PlayerData.level < 7:
-		sprite.frame = PlayerData.level -1
+	#if PlayerData.level < 7:
+		#sprite.frame = PlayerData.level -1
 	call_deferred("handle_player_state",player_state.IDLE)
 	well = get_tree().current_scene.find_child("town_portal")
 
@@ -65,8 +65,8 @@ func level_up():
 	$level_up.emitting = true
 	$level_up/Label/level_up_timer.start()
 	#Dialogue.add_dialogue("Level up!")
-	if PlayerData.level < 7:
-		sprite.frame = PlayerData.level
+	#if PlayerData.level < 7:
+		#sprite.frame = PlayerData.level
 
 func _on_level_up_timer_timeout():
 	$level_up/Label.visible = false
