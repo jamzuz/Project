@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name player_controller
 
-var speed = 200
+var speed = 100
 
 #region states
 
@@ -9,7 +9,8 @@ enum player_state {IDLE, RUN, HURT, ATTACK}
 var current_state : player_state = player_state.IDLE
 @onready var sprite = $sprite
 @onready var anim_tree : AnimationTree = $AnimationTree
-
+@onready var arrow = $arrow
+var well = null
 func handle_player_state(new_state : player_state):
 		if new_state == player_state.IDLE:
 			current_state = player_state.IDLE
@@ -29,9 +30,10 @@ func handle_player_state(new_state : player_state):
 #endregion
 
 func _ready():
-	if PlayerData.level < 7:
-		sprite.frame = PlayerData.level -1
+	#if PlayerData.level < 7:
+		#sprite.frame = PlayerData.level -1
 	call_deferred("handle_player_state",player_state.IDLE)
+	well = get_tree().current_scene.find_child("town_portal")
 
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
@@ -50,17 +52,21 @@ func _input(event):
 	if event.is_action_pressed("attack"):
 		#handle_player_state(player_state.ATTACK)
 		$weapon_pivot.look_at(get_global_mouse_position())
+	if event.is_action_pressed("potion") and PlayerData.potions > 0 and PlayerData.hp != PlayerData.max_hp:
+		PlayerData.use_potion()
 
 func _physics_process(_delta):
+
 	get_input()
 	move_and_slide()
-
+	arrow.look_at(PlayerData.well_location)
 func level_up():
 	$level_up/Label.visible = true
 	$level_up.emitting = true
 	$level_up/Label/level_up_timer.start()
-	if PlayerData.level < 7:
-		sprite.frame = PlayerData.level
+	#Dialogue.add_dialogue("Level up!")
+	#if PlayerData.level < 7:
+		#sprite.frame = PlayerData.level
 
 func _on_level_up_timer_timeout():
 	$level_up/Label.visible = false

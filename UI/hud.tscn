@@ -1,0 +1,167 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckic7aw08wq0g"]
+
+[ext_resource type="Script" path="res://UI/hud.gd" id="1_rqk54"]
+[ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="2_p4jye"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xdx35"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eqkn2"]
+bg_color = Color(0.238317, 0.684068, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlflt"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxwwt"]
+bg_color = Color(0.533333, 0.00392157, 0.709804, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bd4rf"]
+atlas = ExtResource("2_p4jye")
+region = Rect2(563, 221, 12, 33)
+
+[node name="hud" type="CanvasLayer"]
+script = ExtResource("1_rqk54")
+
+[node name="player_hud" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="dark_panel" type="Panel" parent="player_hud"]
+custom_minimum_size = Vector2(410, 90)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="stats_container" type="VBoxContainer" parent="player_hud"]
+custom_minimum_size = Vector2(400, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 15
+
+[node name="hp" type="Label" parent="player_hud/stats_container"]
+layout_mode = 2
+text = "HP:"
+
+[node name="hpbar" type="ProgressBar" parent="player_hud/stats_container/hp"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -352.0
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_xdx35")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eqkn2")
+step = 1.0
+show_percentage = false
+
+[node name="hp_amount" type="Label" parent="player_hud/stats_container/hp/hpbar"]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 20.0
+text = "100/100"
+vertical_alignment = 1
+
+[node name="xp" type="Label" parent="player_hud/stats_container"]
+layout_mode = 2
+text = "XP:"
+
+[node name="xpbar" type="ProgressBar" parent="player_hud/stats_container/xp"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -352.0
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_wlflt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vxwwt")
+step = 1.0
+show_percentage = false
+
+[node name="xp_amount" type="Label" parent="player_hud/stats_container/xp/xpbar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_right = 112.0
+offset_bottom = 10.0
+grow_vertical = 2
+text = "100/100"
+vertical_alignment = 1
+
+[node name="level" type="Label" parent="player_hud/stats_container"]
+layout_mode = 2
+text = "LEVEL: 1"
+
+[node name="gold" type="Label" parent="player_hud/stats_container/level"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Gold: 1"
+
+[node name="potion" type="Panel" parent="player_hud"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="potion" type="Sprite2D" parent="player_hud/potion"]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(40, 40)
+scale = Vector2(4, 4)
+texture = SubResource("AtlasTexture_bd4rf")
+vframes = 2
+
+[node name="potion_amount" type="Label" parent="player_hud/potion"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="chatbox" type="Panel" parent="player_hud"]
+custom_minimum_size = Vector2(400, 600)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="chattext" type="Label" parent="player_hud/chatbox"]
+layout_mode = 0
+offset_right = 400.0
+offset_bottom = 598.0
+vertical_alignment = 2

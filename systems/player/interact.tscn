@@ -12,15 +12,15 @@ script = ExtResource("1_kj3w0")
 
 [node name="E" type="Sprite2D" parent="."]
 z_index = 99
-position = Vector2(39, -44)
+position = Vector2(0, -46)
 texture = SubResource("AtlasTexture_lifkc")
 
 [node name="Panel" type="Panel" parent="."]
 z_index = 98
-offset_left = 33.0
-offset_top = -51.0
-offset_right = 46.0
-offset_bottom = -36.0
+offset_left = -6.0
+offset_top = -53.0
+offset_right = 7.0
+offset_bottom = -38.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
