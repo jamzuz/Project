@@ -38,7 +38,7 @@ func create_player_instance():
 	player = player_scene.instantiate()
 	user_interface = ui_scene.instantiate()
 
-func spawn_player(spawn_position : Vector2 = Vector2(430,300)):
+func spawn_player(spawn_position : Vector2 = Vector2(0,0)):
 	if !player:
 		create_player_instance() 
 	get_tree().current_scene.add_child(player)

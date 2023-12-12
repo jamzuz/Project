@@ -16,4 +16,3 @@ func damage(amount : int):
 	hp_bar.value = mob_hp
 	if mob_hp < 1:
 		get_parent().call_deferred("die")
-

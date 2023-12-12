@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c343cosg5cvc0"]
+
+[ext_resource type="Script" path="res://systems/enemy/detection.gd" id="1_1e8cc"]
+
+[node name="detection" type="RayCast2D"]
+target_position = Vector2(63, 0)
+script = ExtResource("1_1e8cc")
+
+[node name="detection_timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="detection_timer" to="." method="_on_detection_timer_timeout"]

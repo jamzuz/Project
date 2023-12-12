@@ -26,3 +26,6 @@ model = 1
 [node name="npc3" parent="." instance=ExtResource("4_604fu")]
 position = Vector2(489, 340)
 potion_vendor = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(444.225, 274.815)

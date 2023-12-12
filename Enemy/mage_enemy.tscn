@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bur40nbdpjy7i"]
+
+[ext_resource type="Script" path="res://Enemy/mage_enemy.gd" id="1_3h8cq"]
+[ext_resource type="PackedScene" uid="uid://84plpa8ew604" path="res://Enemy/enemy.tscn" id="1_j0xgw"]
+
+[node name="mage_enemy" type="Node2D"]
+script = ExtResource("1_3h8cq")
+
+[node name="enemy" parent="." instance=ExtResource("1_j0xgw")]
+enemy_sprite_frame = 8
+enemy_speed = 60
+enemy_health = 20
+preferred_distance_to_target = 80
+detection_radius = 150.0

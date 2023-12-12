@@ -54,6 +54,8 @@ func _input(event):
 		$weapon_pivot.look_at(get_global_mouse_position())
 	if event.is_action_pressed("potion") and PlayerData.potions > 0 and PlayerData.hp != PlayerData.max_hp:
 		PlayerData.use_potion()
+	if event.is_action_pressed("quit"):
+		get_tree().quit()
 
 func _physics_process(_delta):
 

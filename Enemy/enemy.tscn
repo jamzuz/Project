@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://84plpa8ew604"]
+
+[ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_oui1v"]
+[ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="1_r6k5t"]
+[ext_resource type="PackedScene" uid="uid://drpj3c5u45b05" path="res://systems/world/hitbox.tscn" id="2_dou3t"]
+[ext_resource type="PackedScene" uid="uid://c343cosg5cvc0" path="res://systems/enemy/detection.tscn" id="3_0i1v3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1b0n"]
+atlas = ExtResource("1_r6k5t")
+region = Rect2(408, 86, 136, 31)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8lych"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_omj1b"]
+radius = 8.06226
+
+[node name="enemy" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_oui1v")
+enemy_speed = 80
+
+[node name="enemy_sprite" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = SubResource("AtlasTexture_n1b0n")
+hframes = 8
+vframes = 2
+
+[node name="pathfinding" type="NavigationAgent2D" parent="."]
+path_desired_distance = 4.0
+target_desired_distance = 2.0
+neighbor_distance = 100.0
+debug_path_custom_color = Color(1, 0, 0, 1)
+
+[node name="pathfinding_timer" type="Timer" parent="pathfinding"]
+wait_time = 0.2
+
+[node name="enemy_collision" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_8lych")
+
+[node name="hitbox" parent="." instance=ExtResource("2_dou3t")]
+position = Vector2(1, 0)
+
+[node name="hitbox_area" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_omj1b")
+debug_color = Color(0.996078, 0, 0.207843, 0.419608)
+
+[node name="pivot" type="Node2D" parent="."]
+
+[node name="detection" parent="pivot" instance=ExtResource("3_0i1v3")]
+sight_range = 200
+
+[node name="attack_cooldown" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="navigation_finished" from="pathfinding" to="." method="_on_pathfinding_navigation_finished"]
+[connection signal="timeout" from="pathfinding/pathfinding_timer" to="." method="_on_pathfinding_timer_timeout"]
+[connection signal="player_detected" from="pivot/detection" to="." method="_on_detection_player_detected"]
+[connection signal="player_lost" from="pivot/detection" to="." method="_on_detection_player_lost"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
