@@ -18,7 +18,8 @@ var well_location : Vector2 = Vector2(0,0)
 var dialogue_text : String = ""
 
 func _ready():
-	create_player_instance()
+	#create_player_instance()
+	pass
 
 func reset_player_stats():
 	hp = 100
@@ -36,6 +37,7 @@ func restart():
 
 func create_player_instance():
 	player = player_scene.instantiate()
+	print(player)
 	user_interface = ui_scene.instantiate()
 
 func spawn_player(spawn_position : Vector2 = Vector2(0,0)):
@@ -80,12 +82,14 @@ func level_up():
 		level_up()
 
 func take_damage(amount):
+	
 	hp -= (amount - armor)
 	player.get_hurt()
 	if hp < 1:
 #fix this shit
-		get_tree().paused = true
-		for x in get_tree().get_nodes_in_group("mob"):
+		#get_tree().paused = true
+		player.queue_free()
+		for x in get_tree().get_nodes_in_group("enemy"):
 			x.call_deferred("queue_free")
 		get_tree().call_deferred("change_scene_to_file","res://debug/dead.tscn")
 	else:

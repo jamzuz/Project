@@ -1,0 +1,14 @@
+CollisionShape2D
+Area2D
+AnimationPlayer
+Sprite2D
+Timer
+Node2D
+CPUParticles2D
+AnimatedSprite2D
+CharacterBody2D
+enemy_component
+RayCast2D
+NavigationRegion2D
+NavigationAgent2D
+TileMap

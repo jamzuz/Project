@@ -1,0 +1,8 @@
+res://UI/menu.tscn
+res://player/player.gd
+res://player_data.gd
+res://debug/debug.gd
+res://systems/player/hurtbox.tscn
+res://systems/enemy/enemy_hurtbox.tscn
+res://player/player.tscn
+res://player/Player.tscn

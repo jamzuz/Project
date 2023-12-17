@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://dmpx14vubrav6"]
+[gd_scene load_steps=26 format=3 uid="uid://dmpx14vubrav6"]
 
 [ext_resource type="Texture2D" uid="uid://hygqovgpkm" path="res://assets/colored-transparent.png" id="1_1s45q"]
-[ext_resource type="Script" path="res://player/player.gd" id="1_2y84b"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_15pxu"]
 [ext_resource type="PackedScene" uid="uid://n3hnjyyu4hbx" path="res://systems/xp/level_up.tscn" id="3_beelo"]
 [ext_resource type="PackedScene" uid="uid://cdocugfvu2aoq" path="res://player/weapons/sword.tscn" id="4_wevn1"]
 [ext_resource type="PackedScene" uid="uid://bdyipn10auw15" path="res://particles/dust.tscn" id="5_dn8my"]
+[ext_resource type="Texture2D" uid="uid://gwx0h0rhls2r" path="res://assets/Light_Radius_256.png" id="6_c381p"]
 
 [sub_resource type="Animation" id="Animation_72a47"]
 resource_name = "attack"
@@ -223,7 +224,7 @@ states/idle/position = Vector2(342, 100)
 states/run/node = SubResource("AnimationNodeAnimation_q6l8p")
 states/run/position = Vector2(536, 137)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_fjrj8"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_rllqk"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_e53ww"), "idle", "hit", SubResource("AnimationNodeStateMachineTransition_mxbeq"), "run", "hit", SubResource("AnimationNodeStateMachineTransition_peotm"), "hit", "idle", SubResource("AnimationNodeStateMachineTransition_k4mff"), "hit", "run", SubResource("AnimationNodeStateMachineTransition_2g2rv")]
-graph_offset = Vector2(-172, -29)
+graph_offset = Vector2(-107, -77)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnhnj"]
 atlas = ExtResource("1_1s45q")
@@ -237,7 +238,25 @@ atlas = ExtResource("1_1s45q")
 region = Rect2(596, 171, 13, 12)
 
 [node name="player" type="CharacterBody2D"]
-script = ExtResource("1_2y84b")
+script = ExtResource("1_15pxu")
+
+[node name="dust" parent="." instance=ExtResource("5_dn8my")]
+position = Vector2(3, 7)
+
+[node name="level_up" parent="." instance=ExtResource("3_beelo")]
+
+[node name="Label" type="Label" parent="level_up"]
+visible = false
+offset_left = -36.0
+offset_top = -20.0
+offset_right = 36.0
+offset_bottom = 3.0
+theme_override_font_sizes/font_size = 8
+text = "Level up!"
+
+[node name="level_up_timer" type="Timer" parent="level_up/Label"]
+wait_time = 2.0
+one_shot = true
 
 [node name="player_anims" type="AnimationPlayer" parent="."]
 libraries = {
@@ -257,7 +276,7 @@ parameters/conditions/is_moving = false
 [node name="sprite" type="Sprite2D" parent="."]
 position = Vector2(1, -1)
 texture = SubResource("AtlasTexture_vnhnj")
-offset = Vector2(0, 0.0366762)
+offset = Vector2(0, 0.369756)
 hframes = 7
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -269,28 +288,10 @@ zoom = Vector2(3, 3)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="level_up" parent="." instance=ExtResource("3_beelo")]
-
-[node name="Label" type="Label" parent="level_up"]
-visible = false
-offset_left = -36.0
-offset_top = -20.0
-offset_right = 36.0
-offset_bottom = 3.0
-theme_override_font_sizes/font_size = 8
-text = "Level up!"
-
-[node name="level_up_timer" type="Timer" parent="level_up/Label"]
-wait_time = 2.0
-one_shot = true
-
 [node name="weapon_pivot" type="Node2D" parent="."]
 position = Vector2(3, 0)
 
 [node name="sword" parent="weapon_pivot" instance=ExtResource("4_wevn1")]
-
-[node name="dust" parent="." instance=ExtResource("5_dn8my")]
-position = Vector2(3, 7)
 
 [node name="arrow" type="Node2D" parent="."]
 
@@ -301,4 +302,14 @@ rotation = 2.34747
 texture = SubResource("AtlasTexture_jyjyu")
 offset = Vector2(-10.487, -13.1998)
 
+[node name="lighting" type="PointLight2D" parent="."]
+visible = false
+shadow_enabled = true
+texture = ExtResource("6_c381p")
+texture_scale = 1.5
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="level_up/Label/level_up_timer" to="." method="_on_level_up_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

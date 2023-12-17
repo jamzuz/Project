@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqvnqkabh3uw5"]
+
+[ext_resource type="PackedScene" uid="uid://bkdj7euqibb5l" path="res://systems/enemy/base_projectile.tscn" id="1_4qyen"]
+[ext_resource type="Script" path="res://systems/enemy/fireball.gd" id="2_4widy"]
+[ext_resource type="PackedScene" uid="uid://bx0f0gdy145r5" path="res://particles/fireball.tscn" id="3_4wgmm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r7p8g"]
+radius = 4.0
+
+[node name="fireball" instance=ExtResource("1_4qyen")]
+script = ExtResource("2_4widy")
+speed = 100.0
+damage = 25
+
+[node name="fireball" parent="." index="0" instance=ExtResource("3_4wgmm")]
+
+[node name="fireball_collision" type="CollisionShape2D" parent="projectile" index="0"]
+shape = SubResource("CircleShape2D_r7p8g")

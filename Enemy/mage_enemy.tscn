@@ -1,14 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bur40nbdpjy7i"]
+[gd_scene load_steps=3 format=3 uid="uid://bo3uvuuqvcr6f"]
 
-[ext_resource type="Script" path="res://Enemy/mage_enemy.gd" id="1_3h8cq"]
-[ext_resource type="PackedScene" uid="uid://84plpa8ew604" path="res://Enemy/enemy.tscn" id="1_j0xgw"]
+[ext_resource type="PackedScene" uid="uid://84plpa8ew604" path="res://Enemy/enemy.tscn" id="1_80new"]
+[ext_resource type="Script" path="res://Enemy/mage_enemy.gd" id="1_showh"]
 
-[node name="mage_enemy" type="Node2D"]
-script = ExtResource("1_3h8cq")
-
-[node name="enemy" parent="." instance=ExtResource("1_j0xgw")]
+[node name="mage_enemy" instance=ExtResource("1_80new")]
+script = ExtResource("1_showh")
+attack_cooldown_time = 1.5
 enemy_sprite_frame = 8
-enemy_speed = 60
-enemy_health = 20
 preferred_distance_to_target = 80
 detection_radius = 150.0
+enemy_health = 50
+
+[node name="enemy_sprite" parent="." index="0"]
+frame = 8
+
+[connection signal="can_attack" from="." to="." method="_on_can_attack"]

@@ -162,6 +162,9 @@ size_flags_vertical = 8
 
 [node name="chattext" type="Label" parent="player_hud/chatbox"]
 layout_mode = 0
-offset_right = 400.0
-offset_bottom = 598.0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 392.0
+offset_bottom = 587.0
 vertical_alignment = 2
+autowrap_mode = 3

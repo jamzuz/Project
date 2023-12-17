@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx0f0gdy145r5"]
+
+[ext_resource type="Texture2D" uid="uid://bah8q5oehbxhq" path="res://assets/vfx/PNG (Transparent)/fire_01.png" id="1_fthbs"]
+[ext_resource type="Texture2D" uid="uid://gwx0h0rhls2r" path="res://assets/Light_Radius_256.png" id="2_b6o73"]
+
+[sub_resource type="Curve" id="Curve_74y5t"]
+_data = [Vector2(0.00493827, 0.987747), 0.0, 0.0, 0, 0, Vector2(0.97037, 0.025919), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ldtda"]
+colors = PackedColorArray(0.909804, 0.643137, 0.0980392, 1, 0, 0, 0, 1)
+
+[node name="fireball" type="CPUParticles2D"]
+position = Vector2(0, 1)
+amount = 10
+randomness = 0.2
+lifetime_randomness = 0.5
+texture = ExtResource("1_fthbs")
+gravity = Vector2(0, -10)
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.05
+scale_amount_max = 0.07
+scale_amount_curve = SubResource("Curve_74y5t")
+color_ramp = SubResource("Gradient_ldtda")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = ExtResource("2_b6o73")
+texture_scale = 0.2
